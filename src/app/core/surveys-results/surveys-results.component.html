@@ -1,0 +1,49 @@
+<div *ngFor="let survey of surveys" class="list-card">
+  <div class="card-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <strong>{{survey.name}}</strong>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li>
+          Started on: {{survey.start_date | date: 'longDate'}}
+        </li>
+        <li>
+          Language: {{survey.language}}
+        </li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="viewSurveyDetail(survey)">View Detail</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+</div>
+
+<mat-card *ngIf="ts$.name">
+  <mat-card-header>
+    <mat-card-title>
+      <strong>{{ts$.name}}</strong>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <li>Active: {{ts$.active}}</li>
+      <li>Creation Date: {{ts$.creation_date |date:'longDate'}}</li>
+      <li>Language: {{ts$.language}}</li>
+      <li>Children:
+        <ul *ngFor="let child of ts$.children">
+          <li>
+            {{child.name}} - {{child.classname}} - {{child.position}}
+            <ul *ngFor="let c of child.children">
+              <li>{{c.name}} - {{c.classname}} - {{c.position}}</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>
